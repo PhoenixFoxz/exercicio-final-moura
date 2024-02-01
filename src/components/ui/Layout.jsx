@@ -1,17 +1,9 @@
-import Link from "next/link";
+import Cabecalho from "./Cabecalho";
 
 export default function Layout({ children }) {
   return (
     <>
-      <header>
-        <h1>Final Fantasy XIV</h1>
-        <nav>
-          <Link href="/">Home</Link>
-          <Link href="/personagens">Personagens</Link>
-          <Link href="/company">Company</Link>
-          <Link href="/sobre">Sobre</Link>
-        </nav>
-      </header>
+      <Cabecalho />
       <main className="limitador">{children}</main>
     </>
   );
