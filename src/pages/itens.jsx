@@ -52,7 +52,7 @@ export default function Itens(data) {
       <section>
         <h2>Conheça os Itens do Final Fantasy XIV!</h2>
       </section>
-      <ListaItens data={itens} />
+      <ListaItens itens={ListaItens} />
     </>
   );
 }
