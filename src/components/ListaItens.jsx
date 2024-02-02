@@ -1,36 +1,20 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function ListaItem(itemData) {
+export default function ListaItens({ itens }) {
   return (
-    <>
-      <StyledListaItens>
-        <article>
-          <Link href="/">
-            <h3>Título do post...</h3>
-            <p>Subtítulo do post...</p>
-          </Link>
-        </article>
-        <article>
-          <Link href="/">
-            <h3>Título do post...</h3>
-            <p>Subtítulo do post...</p>
-          </Link>
-        </article>
-        <article>
-          <Link href="/">
-            <h3>Título do post...</h3>
-            <p>Subtítulo do post...</p>
-          </Link>
-        </article>
-        <article>
-          <Link href="/">
-            <h3>Título do post...</h3>
-            <p>Subtítulo do post...</p>
-          </Link>
-        </article>
-      </StyledListaItens>
-    </>
+    <StyledListaItens>
+      {itens.map((item) => {
+        return (
+          <article key={item.id}>
+            <Link href="/">
+              <h3>Título do post...</h3>
+              <p>{item.Name}</p>
+            </Link>
+          </article>
+        );
+      })}
+    </StyledListaItens>
   );
 }
 
