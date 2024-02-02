@@ -15,8 +15,8 @@ export default function Menu() {
       >
         Personagens
       </Link>
-      <Link className={linkAtivo === "/company" ? "ativo" : ""} href="/company">
-        Company
+      <Link className={linkAtivo === "/itens" ? "ativo" : ""} href="/itens">
+        Itens
       </Link>
       <Link className={linkAtivo === "/sobre" ? "ativo" : ""} href="/sobre">
         Sobre

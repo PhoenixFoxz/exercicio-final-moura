@@ -1,18 +1,10 @@
-import Head from "next/head";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function Company() {
+export default function ListaItem(itemData) {
   return (
     <>
-      <Head>
-        <title>Free Company - Final Fantasy XIV</title>
-        <meta name="description" content="Free Company do Final Fantasy XIV" />
-      </Head>
-      <section>
-        <h2>Conheça as Free Company do Final Fantasy XIV!</h2>
-      </section>
-      <StyledListaPerso>
+      <StyledListaItens>
         <article>
           <Link href="/">
             <h3>Título do post...</h3>
@@ -37,12 +29,12 @@ export default function Company() {
             <p>Subtítulo do post...</p>
           </Link>
         </article>
-      </StyledListaPerso>
+      </StyledListaItens>
     </>
   );
 }
 
-const StyledListaPerso = styled.div`
+const StyledListaItens = styled.div`
   article {
     background-color: #f7f7f7;
     padding: 1rem;
@@ -76,5 +68,9 @@ const StyledListaPerso = styled.div`
       color: #1a18a7;
       transition: 500ms;
     }
+  }
+
+  & h3 {
+    font-weight: 700;
   }
 `;
