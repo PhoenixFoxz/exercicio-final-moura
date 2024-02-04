@@ -13,7 +13,7 @@ export default function Personagens() {
         />
       </Head>
       <section>
-        <h2>Conheça os Personagens do Final Fantasy XIV!</h2>
+        <h2>Personagens do Final Fantasy XIV!</h2>
       </section>
       <StyledListaPerso>
         <article>
