@@ -3,17 +3,23 @@ import styled from "styled-components";
 import serverItemApi from "../api/server";
 
 export async function getStaticProps({ params }) {
-  const { ID } = params;
+  const {id} = params;
+
   try {
-    const resposta = await fetch(`${serverItemApi}search?filters=ID=${ID},ClassJobCategory.ID=38`);
-    const dados = await resposta.json();
+    const resposta = await fetch(`${serverItemApi}search?filters=ID=${id},ClassJobCategory.ID=38`);
+
     if (!resposta.ok) {
       throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
     }
-
+    
+    const dados = await resposta.json();
+    console.log("ITEM",dados.Results)
     return {
-      props: { dados },
+      props: { 
+        item: dados.Results[0]
+      },
     };
+    
   } catch (error) {
     console.error("Deu ruim:" + error.message);
     return {
@@ -31,19 +37,18 @@ export async function getStaticPaths() {
   };
 }
 
-export default function Item({ dados }) {
-  const results = dados.Results
-  const tituloPagina = `${results.Name} - Final Fantasy XIV`;
+export default function Item({ item }) {
+  const tituloPagina = `${item.Name} - Final Fantasy XIV`;
   return (
     <>
       <Head>
         <title> {tituloPagina} </title>
-        <meta name="description" content={results.Name} />
+        <meta name="description" content={item.Name} />
       </Head>
 
       <StyledItens>
-        <img src={"https://xivapi.com"+results.Icon} alt={results.Name} />
-          <h3>{results.Name}</h3>
+        <img src={"https://xivapi.com/"+item.Icon} alt={item.Name} />
+          <h3>{item.Name}</h3>
       </StyledItens>
     </>
   );
