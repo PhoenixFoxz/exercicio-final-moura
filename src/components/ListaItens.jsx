@@ -10,12 +10,7 @@ export default function ListaItens({ results }) {
           <article key={item.ID}>
             <Link href={`/itens/${item.ID}`}>
               <p>
-                <Image
-                  src={"https://xivapi.com" + item.Icon}
-                  alt={item.Name}
-                  width={300}
-                  height={300}
-                />
+                <img src={"https://xivapi.com" + item.Icon} alt={item.Name} />
               </p>
               <p>{item.Name}</p>
             </Link>
