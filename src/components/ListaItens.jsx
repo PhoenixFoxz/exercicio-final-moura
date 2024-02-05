@@ -31,7 +31,7 @@ const StyledListaItens = styled.div`
     text-align: center;
 
     & p > img {
-    width: 10%;
+    width: 17%;
   }
 
   }
@@ -41,13 +41,13 @@ const StyledListaItens = styled.div`
     transform: scale(1.05);
   }
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 730px) {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 
     article {
-      width: 49%;
+      width: 32%;
     }
   }
 

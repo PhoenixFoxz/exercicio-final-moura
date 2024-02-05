@@ -6,17 +6,16 @@ export async function getStaticProps({ params }) {
   const {id} = params;
 
   try {
-    const resposta = await fetch(`${serverItemApi}search?filters=ID=${id},ClassJobCategory.ID=38`);
+    const resposta = await fetch(`${serverItemApi}/item/${id}`);
 
     if (!resposta.ok) {
       throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
     }
-    
     const dados = await resposta.json();
-    console.log("ITEM",dados.Results)
+
     return {
       props: { 
-        item: dados.Results[0]
+        description: dados
       },
     };
     
@@ -37,33 +36,39 @@ export async function getStaticPaths() {
   };
 }
 
-export default function Item({ item }) {
-  const tituloPagina = `${item.Name} - Final Fantasy XIV`;
+export default function Item({ description }) {
+  const tituloPagina = `${description.Name} - Final Fantasy XIV`;
+
+  const descricao = description.BaseParam0 != null ? description.BaseParam0.Description : "Description soon";
   return (
     <>
       <Head>
         <title> {tituloPagina} </title>
-        <meta name="description" content={item.Name} />
+        <meta name="description" content={description.Name} />
       </Head>
 
       <StyledItens>
-        <img src={"https://xivapi.com/"+item.Icon} alt={item.Name} />
-          <h3>{item.Name}</h3>
+        <article>
+          <img src={"https://xivapi.com/"+description.IconHD} alt={description.Name} />
+          <h3>{description.Name}</h3><img src={"https://xivapi.com/"+description.ItemUICategory.IconHD} alt="" />
+          <p>{descricao}</p>
+        </article>
       </StyledItens>
     </>
   );
 }
 
 const StyledItens = styled.div` 
+  text-align: center;
 
   article {
+    margin-top: 50px;
     background-color: #f7f7f7;
     padding: 1rem;
-    margin-bottom: 1rem;
     box-shadow: var(--sombra-box);
     border-radius: var(--borda-arredondada);
-    transition: transform 200ms;
     text-align: center;
+    width: 100%;
 
     & p > img {
     width: 10%;
@@ -71,19 +76,10 @@ const StyledItens = styled.div`
 
   }
 
-  article:hover {
+  img:hover {
     cursor: pointer;
-    transform: scale(1.05);
-  }
-
-  @media screen and (min-width: 500px) {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    article {
-      width: 49%;
-    }
+    transition: transform 200ms;
+    transform: scale(1.2);
   }
 
   & a {
