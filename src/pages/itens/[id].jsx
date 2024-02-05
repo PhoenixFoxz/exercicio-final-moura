@@ -54,11 +54,15 @@ export default function Item({ description }) {
           <Image
             src={"https://xivapi.com/" + description.IconHD}
             alt={description.Name}
+            width={300}
+            height={300}
           />
           <h3>{description.Name}</h3>
           <Image
             src={"https://xivapi.com/" + description.ItemUICategory.IconHD}
             alt=""
+            width={300}
+            height={300}
           />
           <p>{descricao}</p>
         </article>
