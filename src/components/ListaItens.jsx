@@ -1,15 +1,17 @@
 import Link from "next/link";
+import Image from "next/image";
 import styled from "styled-components";
 
 export default function ListaItens({ results }) {
-
   return (
     <StyledListaItens>
       {results.map((item) => {
         return (
           <article key={item.ID}>
             <Link href={`/itens/${item.ID}`}>
-              <p><img src={"https://xivapi.com"+item.Icon} alt={item.Name} /></p>
+              <p>
+                <Image src={"https://xivapi.com" + item.Icon} alt={item.Name} />
+              </p>
               <p>{item.Name}</p>
             </Link>
           </article>
@@ -19,8 +21,7 @@ export default function ListaItens({ results }) {
   );
 }
 
-const StyledListaItens = styled.div` 
-
+const StyledListaItens = styled.div`
   article {
     background-color: #f7f7f7;
     padding: 1rem;
@@ -31,9 +32,8 @@ const StyledListaItens = styled.div`
     text-align: center;
 
     & p > img {
-    width: 17%;
-  }
-
+      width: 17%;
+    }
   }
 
   article:hover {
