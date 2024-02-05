@@ -29,7 +29,7 @@ export default function Itens({dados}) {
     <>
       <Head>
         <title>Itens - Final Fantasy XIV</title>
-        <meta name="description" content="Free Company do Final Fantasy XIV" />
+        <meta name="description" content="Itens do Final Fantasy XIV" />
       </Head>
       <section>
         <h2>Itens do Final Fantasy XIV!</h2>
