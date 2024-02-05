@@ -51,12 +51,12 @@ export default function Item({ description }) {
 
       <StyledItens>
         <article>
-          <Image
+          <img
             src={"https://xivapi.com/" + description.IconHD}
             alt={description.Name}
           />
           <h3>{description.Name}</h3>
-          <Image
+          <img
             src={"https://xivapi.com/" + description.ItemUICategory.IconHD}
             alt=""
           />
