@@ -1,9 +1,10 @@
 import Head from "next/head";
+import Image from "next/image";
 import styled from "styled-components";
 import serverItemApi from "../api/server";
 
 export async function getStaticProps({ params }) {
-  const {id} = params;
+  const { id } = params;
 
   try {
     const resposta = await fetch(`${serverItemApi}/item/${id}`);
@@ -14,11 +15,10 @@ export async function getStaticProps({ params }) {
     const dados = await resposta.json();
 
     return {
-      props: { 
-        description: dados
+      props: {
+        description: dados,
       },
     };
-    
   } catch (error) {
     console.error("Deu ruim:" + error.message);
     return {
@@ -26,7 +26,6 @@ export async function getStaticProps({ params }) {
     };
   }
 }
-
 
 export async function getStaticPaths() {
   return {
@@ -39,7 +38,10 @@ export async function getStaticPaths() {
 export default function Item({ description }) {
   const tituloPagina = `${description.Name} - Final Fantasy XIV`;
 
-  const descricao = description.BaseParam0 != null ? description.BaseParam0.Description : "Description soon";
+  const descricao =
+    description.BaseParam0 != null
+      ? description.BaseParam0.Description
+      : "Description soon";
   return (
     <>
       <Head>
@@ -49,8 +51,15 @@ export default function Item({ description }) {
 
       <StyledItens>
         <article>
-          <img src={"https://xivapi.com/"+description.IconHD} alt={description.Name} />
-          <h3>{description.Name}</h3><img src={"https://xivapi.com/"+description.ItemUICategory.IconHD} alt="" />
+          <Image
+            src={"https://xivapi.com/" + description.IconHD}
+            alt={description.Name}
+          />
+          <h3>{description.Name}</h3>
+          <Image
+            src={"https://xivapi.com/" + description.ItemUICategory.IconHD}
+            alt=""
+          />
           <p>{descricao}</p>
         </article>
       </StyledItens>
@@ -58,7 +67,7 @@ export default function Item({ description }) {
   );
 }
 
-const StyledItens = styled.div` 
+const StyledItens = styled.div`
   text-align: center;
 
   article {
@@ -71,9 +80,8 @@ const StyledItens = styled.div`
     width: 100%;
 
     & p > img {
-    width: 10%;
-  }
-
+      width: 10%;
+    }
   }
 
   img:hover {
