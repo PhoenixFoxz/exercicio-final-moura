@@ -4,7 +4,7 @@ import ListaItens from "../components/ListaItens";
 
 export async function getStaticProps() {
   try {
-    const resposta = await fetch(`${serverItemApi}`);
+    const resposta = await fetch(`${serverItemApi}search?filters=LevelItem>1,ClassJobCategory.ID=38`);
     const dados = await resposta.json();
 
     if (!resposta.ok) {

@@ -5,13 +5,11 @@ import serverItemApi from "../api/server";
 export async function getStaticProps({ params }) {
   const { ID } = params;
   try {
-    const resposta = await fetch(`${serverItemApi}/itens/${ID}`);
-
+    const resposta = await fetch(`${serverItemApi}search?filters=ID=${ID},ClassJobCategory.ID=38`);
+    const dados = await resposta.json();
     if (!resposta.ok) {
       throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
     }
-    
-    const dados = await resposta.json();
 
     return {
       props: { dados },
