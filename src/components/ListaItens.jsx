@@ -1,14 +1,15 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function ListaItens({ itens }) {
+export default function ListaItens({ results }) {
+
   return (
     <StyledListaItens>
-      {itens.map((item) => {
+      {results.map((item) => {
         return (
-          <article key={item.id}>
-            <Link href="/">
-              <h3>Título do post...</h3>
+          <article key={item.ID}>
+            <Link href={`/itens/${item.ID}`}>
+              <p><img src={"https://xivapi.com"+item.Icon} alt={item.Name} /></p>
               <p>{item.Name}</p>
             </Link>
           </article>
@@ -18,7 +19,8 @@ export default function ListaItens({ itens }) {
   );
 }
 
-const StyledListaItens = styled.div`
+const StyledListaItens = styled.div` 
+
   article {
     background-color: #f7f7f7;
     padding: 1rem;
@@ -26,6 +28,12 @@ const StyledListaItens = styled.div`
     box-shadow: var(--sombra-box);
     border-radius: var(--borda-arredondada);
     transition: transform 200ms;
+    text-align: center;
+
+    & p > img {
+    width: 17%;
+  }
+
   }
 
   article:hover {
@@ -33,13 +41,13 @@ const StyledListaItens = styled.div`
     transform: scale(1.05);
   }
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 730px) {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 
     article {
-      width: 49%;
+      width: 32%;
     }
   }
 
